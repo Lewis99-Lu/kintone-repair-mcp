@@ -1,0 +1,48 @@
+{
+  "manifest_version": "0.3",
+  "name": "kintone-repair",
+  "display_name": "kintone Repair MCP",
+  "version": "1.0.0",
+  "description": "MCP server for querying kintone repair cases.",
+  "author": {
+    "name": "Lewis"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/build/index.js"
+      ],
+      "env": {
+        "KINTONE_DOMAIN": "${user_config.kintone_domain}",
+        "KINTONE_USERNAME": "${user_config.kintone_username}",
+        "KINTONE_PASSWORD": "${user_config.kintone_password}"
+      }
+    }
+  },
+  "user_config": {
+    "kintone_domain": {
+      "type": "string",
+      "title": "kintone Domain",
+      "description": "kintone 網域名稱，不需要輸入 https://",
+      "default": "noahtw.cybozu.com",
+      "required": true
+    },
+    "kintone_username": {
+      "type": "string",
+      "title": "kintone 登入帳號",
+      "description": "用來查詢報修案件 App 1618 的登入帳號",
+      "required": true
+    },
+    "kintone_password": {
+      "type": "string",
+      "title": "kintone 登入密碼",
+      "description": "kintone 登入密碼",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "license": "ISC"
+}
